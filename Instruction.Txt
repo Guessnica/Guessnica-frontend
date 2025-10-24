@@ -1,0 +1,25 @@
+Gra miejska
+Projekt musi spełniać następujące wymagania funkcjonalne:
+
+- administrator dodaje do bazy danych zdjęcia miejsc w swoim mieście
+    każde zdjęcie jest wyposażone w opis i dokładne koordynaty geograficzne miejsca, w którym zdjęcie było zrobione
+    każde zdjęcie może dostać jeden z trzech poziomów trudności: łatwy, średni i trudny, odpowiednio warte 1, 2 i 3 punkty
+- użytkownik może się zarejestrować w systemie
+- użytkownik otrzymuje raz dziennie o godzinie H jedną zagadkę w formie wylosowanego zdjęcia spośród wgranych przez administratora
+    jego zadaniem jest odgadnięcie gdzie zostało wykonane zdjęcie poprzez kliknięcie na mapie domniemanej pozycji
+    jeżeli trafi (czyli kliknie max. x metrów od celu), otrzymuje punkty
+    jeżeli nie trafi, zdjęcie trafia do puli zagadek i użytkownik może je wylosować kiedyś jeszcze raz
+    punkty wyliczane są jako wypadkowa liczby punktów, czasu jaki upłynął od zobaczenia zagadki i odległości od celu
+- użytkownik widzi nazwy i avatary użytkowników, którzy są na podium
+    podium dotyczy punktów zdobytych przez ostatnie n dni
+- administrator ustawia wartości godziny zagadki $H, x metrów i n dni
+- administrator widzi wszystkie kliknięcia pod każdą zagadką i widzi statystyki kliknięć (średnia liczba uzyskanych punktów, średni czas, średnia odległość)
+- administrator widzi ilu użytkowników odpowiedziało na ile zagadek (dzięki czemu wie, czy należałoby dodać nowe zdjęcia)
+- administrator zarządza użytkownikami
+
+
+Projekt musi spełniać następujące wymagania funkcjonalne:
+
+- rejestracja powinna odbywać się klasycznie poprzez mejla oraz Facebooka
+- backend i frontend powinny być odseparowane i komunikacja powinna iść poprzez REST API
+- backend musi być udokumentowany w formie OpenAPI
