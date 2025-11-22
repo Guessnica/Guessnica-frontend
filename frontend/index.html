@@ -9,47 +9,57 @@
   </head>
   <body>
 
-   <nav class="bg-sky-900 text-white">
+<nav class="bg-sky-800 text-white border-b-2 border-gray-600">
   <div class="container mx-auto px-4 md:flex items-center gap-6">
+    
     <div class="flex items-center justify-between md:w-auto w-full">
-      <a href="#" class="py-5 px-2 text-white text-2xl   font-bold">Guessnica </a>
+      <a href="#" class="py-5 px-2 text-white text-2xl font-bold">Guessnica</a>
+      
       <div class="md:hidden flex items-center">
         <button type="button" class="mobile-menu-button">
-     <div class="flex flex-col justify-between w-[20px] h-[16px] transform transition-all duration-300 origin-center">
-    <div class="bg-current h-[2px] w-full rounded transform transition-all duration-300 origin-left" id="top-bar"></div>
-    <div class="bg-current h-[2px] w-full rounded transform transition-all duration-300" id="middle-bar"></div>
-    <div class="bg-current h-[2px] w-full rounded transform transition-all duration-300 origin-left" id="bottom-bar"></div>
-  </div> 
+          <div class="flex flex-col justify-between w-[20px] h-[16px] transform transition-all duration-300 origin-center">
+            <div class="bg-current h-[2px] w-full rounded transform transition-all duration-300 origin-left" id="top-bar"></div>
+            <div class="bg-current h-[2px] w-full rounded transform transition-all duration-300" id="middle-bar"></div>
+            <div class="bg-current h-[2px] w-full rounded transform transition-all duration-300 origin-left" id="bottom-bar"></div>
+          </div>
         </button>
       </div>
     </div>
-
-    <div class="hidden md: bg-sky-900 md:flex md:flex-row flex-col items-center justify-start md:space-x-1 pb-3 md:pb-0 navigation-menu">
+    
+    <div class="hidden flex-row items-center justify-start pb-3 navigation-menu-bar md:flex"> 
       <a href="#" class="py-2 px-3 block">tEŻ POUSTE</a>
       <a href="#" class="py-2 px-3 block">puste</a>
+      
       <div class="relative">
         <button type="button" class="dropdown-toggle py-2 px-3 hover:bg-sky-900 flex items-center gap-2 rounded">
           <span class="pointer-events-none select-none">Services</span>
-          <svg class="w-3 h-3 pointer-events-none" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-          </svg>
         </button>
         <div class="dropdown-menu absolute hidden bg-sky-700 text-white rounded-b-lg pb-2 w-48">
           <a href="#" class="block px-6 py-2 hover:bg-sky-600">Puste</a>
         </div>
       </div>
+      
       <a href="#" class="py-2 px-3 block">PUSTE</a>
     </div>
+
   </div>
 </nav>
 
-
-
-
-
-
-
-
+<div class="hidden flex-col items-center justify-start bg-linear-to-b from-sky-700 to-yellow-200 pb-3 navigation-menu md:hidden" id="mobile-menu-dropdown"> 
+  <a href="#" class="py-2 px-3 block">tEŻ POUSTE</a>
+  <a href="#" class="py-2 px-3 block">puste</a>
+  
+  <div class="relative hidden"> 
+    <button type="button" class="dropdown-toggle py-2 px-3 hover:bg-sky-900 flex items-center gap-2 rounded">
+      <span class="pointer-events-none select-none">Services</span>
+    </button>
+    <div class="dropdown-menu absolute hidden bg-sky-700 text-white rounded-b-lg pb-2 w-48">
+      <a href="#" class="block px-6 py-2 hover:bg-sky-600">Puste</a>
+    </div>
+  </div>
+  
+  <a href="#" class="py-2 px-3 block">PUSTE</a>
+</div>
 
 
 
