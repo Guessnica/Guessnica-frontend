@@ -1,35 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import Header from './Header'; 
+import Content from './Content';
+import Profile from './Profile';
+import { Routes, Route } from 'react-router-dom';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+    return (
+        <>
+            <Header />
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+            {/* Define where the routes will be rendered */}
+            <Routes>
+                {/* Route for the Home/Content page */}
+                <Route path="/" element={<Content />} />
 
-export default App
+                {/* Route for the new Profile page */}
+                <Route path="/profile" element={<Profile />} />
+
+                {/* Optional: 404 Not Found Page */}
+                <Route path="*" element={<main className="container mx-auto p-8 text-center text-red-500 text-2xl">404 - Page Not Found</main>} />
+            </Routes>
+        </>
+    );
+};
+
+export default App;
