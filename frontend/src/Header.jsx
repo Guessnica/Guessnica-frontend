@@ -40,6 +40,7 @@ const Header = () => {
                             <div className="hidden flex-row items-center justify-start navigation-menu-bar md:flex">
                                 {/* 💡 Converted anchor tags to Link components */}
                                 <Link to="/" className="py-2 px-3 block rounded transition-all duration-300 ease-in-out hover:bg-amber-300">Home (Content)</Link>
+                                <Link to="/guess" className="py-2 px-3 block rounded transition-all duration-300 ease-in-out hover:bg-amber-300">Guess</Link>
                                 <Link to="/profile" className="py-2 px-3 block rounded transition-all duration-300 ease-in-out hover:bg-amber-300">Profile (New Page)</Link>
 
                                 {/* Desktop Dropdown */}
@@ -74,6 +75,7 @@ const Header = () => {
             >
                 {/* 💡 Converted mobile anchor tags to Link components */}
                 <Link to="/" className="py-2 px-3 transition-all duration-300 ease-in-out hover:bg-amber-300 block rounded text-center">Home (Content)</Link>
+                <Link to="/guess" className="py-2 px-3 transition-all duration-300 ease-in-out hover:bg-amber-300 block rounded text-center">Guess</Link>
                 <Link to="/profile" className="py-2 px-3 transition-all duration-300 ease-in-out hover:bg-amber-300 block rounded text-center">Profile (New Page)</Link>
 
                 {/* Mobile Dropdown */}

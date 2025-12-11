@@ -1,7 +1,8 @@
 import React from 'react';
 import Header from './Header'; 
+import Guess from "./Guess";
 import Content from './Content';
-import Profile from './Profile';
+import Profile from "./Profile";
 import { Routes, Route } from 'react-router-dom';
 
 const App = () => {
@@ -13,6 +14,8 @@ const App = () => {
             <Routes>
                 {/* Route for the Home/Content page */}
                 <Route path="/" element={<Content />} />
+                {/* Route for the Guess page */}
+                <Route path="/guess" element={<Guess />} />
 
                 {/* Route for the new Profile page */}
                 <Route path="/profile" element={<Profile />} />
