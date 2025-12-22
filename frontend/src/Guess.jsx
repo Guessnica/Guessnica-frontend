@@ -1,4 +1,23 @@
 import React, { useState } from 'react';
+
+import {MapContainer, TileLayer, Marker, Popup} from "react-leaflet";
+import {Icon} from "leaflet";
+import 'leaflet/dist/leaflet.css';
+import ObrazekIkonki from './assets/location.png'
+const position = [51.2024305556, 16.2123805556]; // Środek Piekar 
+const marker = [
+    {
+        geocode: [51.2024305556, 16.2123805556],
+        popUp: "Domyślna lokacja!"
+    }
+];
+const ikonka = new Icon({
+    iconUrl: ObrazekIkonki,
+    iconSize: [34,34]
+})
+
+
+
 export default function Guess() {
 	const [menuOpen, setMenuOpen] = useState(false);
 	const toggleMenu = () => setMenuOpen((s) => !s);
@@ -53,7 +72,24 @@ export default function Guess() {
 
 				{/* Mapa / obrazek */}
 				<div className="w-full h-[350px] flex items-center justify-center">
-					<div className="w-4 h-4 bg-red-500 rounded-full"></div>
+                    {/* <div className="w-4 h-4 bg-red-500 rounded-full"></div> */}
+                    <MapContainer 
+                    center={position}
+                    zoom={12}
+                    style={{height: '320px', width:'100%'}}
+                    >
+                        <TileLayer
+                            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        />
+                        {marker.map(marker =>(
+                            <Marker position={marker.geocode} icon={ikonka}>
+                            </Marker>
+                        ))}
+                        
+                        
+                        
+                    </MapContainer>
 				</div>
 
 				{/* Confirm button */}
