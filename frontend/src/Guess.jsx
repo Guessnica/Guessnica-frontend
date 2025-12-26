@@ -50,7 +50,7 @@ export default function Guess() {
                 <div className="font-black text-xl italic tracking-tighter uppercase">Riddle Game</div>
                 <div className="w-10"></div>
             </div>
-   
+    
             {/* Main Content Box - No Shadow */}
             <div className="w-[95%] max-w-6xl bg-white border-b-yellow-100 border-black mt-6 min-h-[750px] p-4 md:p-6 flex flex-col items-center mb-10">
 
