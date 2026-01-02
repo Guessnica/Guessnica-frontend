@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './Header'; 
 import Guess from "./Guess";
 import Content from './Content';
@@ -6,22 +6,51 @@ import Profile from "./Profile";
 import { Routes, Route } from 'react-router-dom';
 
 const App = () => {
+    const [darkMode, setDarkMode] = useState(
+        localStorage.getItem('theme') === 'dark'
+    );
+
+    useEffect(() => {
+        const root = document.documentElement;
+        if (darkMode) {
+            root.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            root.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+        }
+    }, [darkMode]);
+
     return (
         <>
             <Header />
 
-            {/* Define where the routes will be rendered */}
+            <div className="w-full flex justify-end px-6 py-2">
+                <button
+                    onClick={() => setDarkMode(!darkMode)}
+                    className="
+                        px-4 py-2 rounded-lg text-sm font-semibold
+                        bg-sky-500 text-white
+                        dark:bg-slate-700 dark:text-sky-200
+                        transition
+                    "
+                >
+                    {darkMode ? 'Light mode' : 'Dark mode'}
+                </button>
+            </div>
+
             <Routes>
-                {/* Route for the Home/Content page */}
                 <Route path="/" element={<Content />} />
-                {/* Route for the Guess page */}
                 <Route path="/guess" element={<Guess />} />
-
-                {/* Route for the new Profile page */}
                 <Route path="/profile" element={<Profile />} />
-
-                {/* Optional: 404 Not Found Page */}
-                <Route path="*" element={<main className="container mx-auto p-8 text-center text-red-500 text-2xl">404 - Page Not Found</main>} />
+                <Route
+                    path="*"
+                    element={
+                        <main className="container mx-auto p-8 text-center text-red-500 text-2xl">
+                            404 - Page Not Found
+                        </main>
+                    }
+                />
             </Routes>
         </>
     );

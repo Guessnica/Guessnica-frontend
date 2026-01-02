@@ -10,10 +10,7 @@ export default function AdminPanel() {
         async function fetchAdminData() {
             try {
                 const token = localStorage.getItem('jwt');
-
-                const headers = token
-                    ? { Authorization: `Bearer ${token}` }
-                    : {};
+                const headers = token ? { Authorization: `Bearer ${token}` } : {};
 
                 const [riddlesRes, usersRes, subsRes] = await Promise.all([
                     fetch('/admin/riddles/stats', { headers }),
@@ -21,13 +18,9 @@ export default function AdminPanel() {
                     fetch('/admin/submissions', { headers }),
                 ]);
 
-                const riddlesData = await riddlesRes.json();
-                const usersData = await usersRes.json();
-                const submissionsData = await subsRes.json();
-
-                setRiddleStats(riddlesData ?? []);
-                setUserStats(usersData ?? []);
-                setSubmissions(submissionsData ?? []);
+                setRiddleStats(await riddlesRes.json() ?? []);
+                setUserStats(await usersRes.json() ?? []);
+                setSubmissions(await subsRes.json() ?? []);
             } catch (err) {
                 console.error('Admin fetch error:', err);
             } finally {
@@ -40,21 +33,21 @@ export default function AdminPanel() {
 
     if (loading) {
         return (
-            <div className="w-full flex justify-center items-center p-10 text-sky-700">
+            <div className="w-full flex justify-center items-center p-10 text-sky-700 dark:text-sky-300">
                 Loading admin data...
             </div>
         );
     }
 
     return (
-        <div className="w-full min-h-screen bg-sky-50 flex flex-col items-center p-6">
-            <h1 className="text-3xl font-bold text-sky-700 mb-8">
+        <div className="w-full min-h-screen bg-sky-50 dark:bg-slate-900 flex flex-col items-center p-6">
+            <h1 className="text-3xl font-bold text-sky-700 dark:text-sky-300 mb-8">
                 Admin Panel
             </h1>
 
             {/* RIDDLE STATS */}
             <section className="w-full max-w-6xl mb-10">
-                <h2 className="text-xl font-semibold text-sky-700 mb-4">
+                <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-4">
                     Riddle Statistics
                 </h2>
 
@@ -62,16 +55,20 @@ export default function AdminPanel() {
                     {riddleStats.map((r) => (
                         <div
                             key={r.riddleId}
-                            className="bg-white border-2 border-sky-500 rounded-xl p-5 shadow-md"
+                            className="
+                                bg-white dark:bg-slate-800
+                                border-2 border-sky-500
+                                rounded-xl p-5 shadow-md
+                            "
                         >
-                            <div className="font-semibold text-gray-800 mb-1">
+                            <div className="font-semibold text-gray-800 dark:text-sky-100 mb-1">
                                 {r.description}
                             </div>
-                            <div className="text-sm text-gray-600">
+                            <div className="text-sm text-gray-600 dark:text-sky-300">
                                 Location: {r.shortDescription}
                             </div>
 
-                            <div className="mt-3 text-sm text-gray-800">
+                            <div className="mt-3 text-sm text-gray-800 dark:text-sky-100">
                                 <div>Times answered: {r.timesAnswered}</div>
                                 <div>Avg score: {r.avgScore ?? 0}</div>
                                 <div>Avg distance (m): {r.avgDistanceMeters ?? 0}</div>
@@ -84,7 +81,7 @@ export default function AdminPanel() {
 
             {/* USER STATS */}
             <section className="w-full max-w-6xl mb-10">
-                <h2 className="text-xl font-semibold text-sky-700 mb-4">
+                <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-4">
                     User Statistics
                 </h2>
 
@@ -92,13 +89,17 @@ export default function AdminPanel() {
                     {userStats.map((u) => (
                         <div
                             key={u.userId}
-                            className="bg-white border-2 border-sky-500 rounded-xl p-5 shadow-md"
+                            className="
+                                bg-white dark:bg-slate-800
+                                border-2 border-sky-500
+                                rounded-xl p-5 shadow-md
+                            "
                         >
-                            <div className="font-semibold text-gray-800 mb-2">
+                            <div className="font-semibold text-gray-800 dark:text-sky-100 mb-2">
                                 {u.displayName}
                             </div>
 
-                            <div className="text-sm text-gray-800">
+                            <div className="text-sm text-gray-800 dark:text-sky-100">
                                 <div>Riddles answered: {u.riddlesAnswered}</div>
                                 <div>Total score: {u.totalScore ?? 0}</div>
                                 <div>Average score: {u.averageScore ?? 0}</div>
@@ -110,13 +111,13 @@ export default function AdminPanel() {
 
             {/* SUBMISSIONS TABLE */}
             <section className="w-full max-w-6xl mb-10">
-                <h2 className="text-xl font-semibold text-sky-700 mb-4">
+                <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-4">
                     All Submissions
                 </h2>
 
-                <div className="overflow-x-auto bg-white border-2 border-sky-500 rounded-xl shadow-md">
+                <div className="overflow-x-auto bg-white dark:bg-slate-800 border-2 border-sky-500 rounded-xl shadow-md">
                     <table className="w-full table-auto border-collapse">
-                        <thead className="bg-sky-500 text-white">
+                        <thead className="bg-sky-500 dark:bg-sky-700 text-white">
                             <tr>
                                 <th className="border border-sky-500 p-3">User</th>
                                 <th className="border border-sky-500 p-3">Riddle</th>
@@ -131,7 +132,11 @@ export default function AdminPanel() {
                             {submissions.map((s, idx) => (
                                 <tr
                                     key={idx}
-                                    className="text-center hover:bg-sky-50 transition"
+                                    className="
+                                        text-center
+                                        hover:bg-sky-50 dark:hover:bg-slate-700
+                                        transition
+                                    "
                                 >
                                     <td className="border border-sky-500 p-2">{s.displayName}</td>
                                     <td className="border border-sky-500 p-2">{s.riddleId}</td>
