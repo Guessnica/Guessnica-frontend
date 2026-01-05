@@ -4,11 +4,22 @@ import Guess from "./Guess";
 import Content from './Content';
 import Profile from "./Profile";
 import { Routes, Route } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
+import i18n from "./i18n";
+
 
 const App = () => {
     const [darkMode, setDarkMode] = useState(
         localStorage.getItem('theme') === 'dark'
     );
+
+    const { t } = useTranslation();
+
+    const setLang = (lang) => {
+    i18n.changeLanguage(lang);
+     localStorage.setItem("lang", lang);
+    };
+
 
     useEffect(() => {
         const root = document.documentElement;
@@ -25,7 +36,7 @@ const App = () => {
         <>
             <Header />
 
-            <div className="w-full flex justify-end px-6 py-2">
+            <div className="w-full flex justify-end items-center gap-4 px-6 py-2">
                 <button
                     onClick={() => setDarkMode(!darkMode)}
                     className="
@@ -35,9 +46,15 @@ const App = () => {
                         transition
                     "
                 >
-                    {darkMode ? 'Light mode' : 'Dark mode'}
+                    {darkMode ? t("ui.light") : t("ui.dark")}
                 </button>
             </div>
+            <div className="flex items-center gap-2 border border-sky-500 rounded-lg px-3 py-2 text-sm">
+             <span className="font-semibold">{t("ui.language")}:</span>
+             <button onClick={() => setLang("en")} className="hover:underline">EN</button>
+             <button onClick={() => setLang("pl")} className="hover:underline">PL</button>
+            </div>
+
 
             <Routes>
                 <Route path="/" element={<Content />} />

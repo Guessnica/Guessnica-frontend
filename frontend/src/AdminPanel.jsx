@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+
 
 export default function AdminPanel() {
+    const { t } = useTranslation();
+
     const [riddleStats, setRiddleStats] = useState([]);
     const [userStats, setUserStats] = useState([]);
     const [submissions, setSubmissions] = useState([]);
@@ -42,13 +46,14 @@ export default function AdminPanel() {
     return (
         <div className="w-full min-h-screen bg-sky-50 dark:bg-slate-900 flex flex-col items-center p-6">
             <h1 className="text-3xl font-bold text-sky-700 dark:text-sky-300 mb-8">
-                Admin Panel
+               {t("admin.title")}
             </h1>
+
 
             {/* RIDDLE STATS */}
             <section className="w-full max-w-6xl mb-10">
                 <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-4">
-                    Riddle Statistics
+                    {t("admin.riddleStats")}
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -82,7 +87,7 @@ export default function AdminPanel() {
             {/* USER STATS */}
             <section className="w-full max-w-6xl mb-10">
                 <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-4">
-                    User Statistics
+                    {t("admin.userStats")}
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -112,7 +117,7 @@ export default function AdminPanel() {
             {/* SUBMISSIONS TABLE */}
             <section className="w-full max-w-6xl mb-10">
                 <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-4">
-                    All Submissions
+                    {t("admin.submissions")}
                 </h2>
 
                 <div className="overflow-x-auto bg-white dark:bg-slate-800 border-2 border-sky-500 rounded-xl shadow-md">
