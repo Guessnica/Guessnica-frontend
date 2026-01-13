@@ -1,19 +1,47 @@
-// Header.jsx
-import React, { useState } from 'react';
-// 💡 Import Link for navigation
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import ThemeCustomizer from './components/ThemeCustomizer';
 
 const Header = () => {
-    // ... (State and toggle functions remain the same) ...
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
+    const [darkMode, setDarkMode] = useState(false);
+    const [showThemeCustomizer, setShowThemeCustomizer] = useState(false);
+    const { t, i18n } = useTranslation();
+
+    useEffect(() => {
+        const isDark = localStorage.getItem('theme') === 'dark';
+        setDarkMode(isDark);
+    }, []);
+
     const toggleMobileMenu = () => { setIsMobileMenuOpen(!isMobileMenuOpen); };
     const toggleDropdown = () => { setIsDropdownOpen(!isDropdownOpen); };
+    
+    const toggleDarkMode = () => {
+        const newMode = !darkMode;
+        setDarkMode(newMode);
+        localStorage.setItem('theme', newMode ? 'dark' : 'light');
+        
+        const root = document.documentElement;
+        if (newMode) {
+            root.classList.add('dark');
+        } else {
+            root.classList.remove('dark');
+        }
+    };
+
+    const changeLanguage = (lang) => {
+        i18n.changeLanguage(lang);
+        localStorage.setItem('lang', lang);
+    };
+
     const mobileMenuHeightClass = isMobileMenuOpen ? 'max-h-screen' : 'max-h-0';
     const dropdownVisibilityClass = isDropdownOpen ? 'block' : 'hidden';
-    const topBarClass = isMobileMenuOpen ? 'rotate-45 translate-y-0' : ''; // Adjusted y-translation for standard hamburger animation
+    const topBarClass = isMobileMenuOpen ? 'rotate-45 translate-y-0' : '';
     const middleBarClass = isMobileMenuOpen ? 'opacity-0' : '';
-    const bottomBarClass = isMobileMenuOpen ? '-rotate-45 -translate-y-0' : ''; // Adjusted y-translation
+    const bottomBarClass = isMobileMenuOpen ? '-rotate-45 -translate-y-0' : '';
 
     return (
         <header>
@@ -21,7 +49,6 @@ const Header = () => {
                 <div className="container mx-auto px-4 md:flex items-center gap-6">
                     <div className="flex items-center justify-between w-full">
                         <div className="flex items-center">
-                            {/* Mobile Menu Button */}
                             <div className="md:hidden flex items-center order-first">
                                 <button
                                     type="button"
@@ -36,14 +63,58 @@ const Header = () => {
                                 </button>
                             </div>
 
-                            {/* Desktop Menu */}
                             <div className="hidden flex-row items-center justify-start navigation-menu-bar md:flex">
-                                {/* 💡 Converted anchor tags to Link components */}
                                 <Link to="/" className="py-2 px-3 block rounded transition-all duration-300 ease-in-out hover:bg-amber-300">Home (Content)</Link>
                                 <Link to="/guess" className="py-2 px-3 block rounded transition-all duration-300 ease-in-out hover:bg-amber-300">Guess</Link>
                                 <Link to="/profile" className="py-2 px-3 block rounded transition-all duration-300 ease-in-out hover:bg-amber-300">Profile (New Page)</Link>
 
-                                {/* Desktop Dropdown */}
+                                <div className="relative text-center">
+                                    <button
+                                        type="button"
+                                        onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
+                                        className="py-2 px-3 transition-all duration-300 ease-in-out hover:bg-amber-300 rounded flex items-center gap-2"
+                                    >
+                                        🌐 {i18n.language.toUpperCase()}
+                                    </button>
+                                    <div className={`absolute top-full left-0 mt-1 bg-white text-gray-800 rounded-lg shadow-lg overflow-hidden z-50 ${isLanguageDropdownOpen ? 'block' : 'hidden'}`}>
+                                        <button
+                                            onClick={() => {
+                                                changeLanguage('en');
+                                                setIsLanguageDropdownOpen(false);
+                                            }}
+                                            className="block w-full text-left px-4 py-2 hover:bg-gray-100 text-sm"
+                                        >
+                                            🇬🇧 English
+                                        </button>
+                                        <button
+                                            onClick={() => {
+                                                changeLanguage('pl');
+                                                setIsLanguageDropdownOpen(false);
+                                            }}
+                                            className="block w-full text-left px-4 py-2 hover:bg-gray-100 text-sm"
+                                        >
+                                            🇵🇱 Polski
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-center gap-2">
+                                    <button
+                                        onClick={toggleDarkMode}
+                                        className="py-2 px-3 transition-all duration-300 ease-in-out hover:bg-amber-300 rounded flex items-center gap-2"
+                                        title={darkMode ? t("ui.light") : t("ui.dark")}
+                                    >
+                                        {darkMode ? '☀️' : '🌙'}
+                                    </button>
+                                    <button
+                                        onClick={() => setShowThemeCustomizer(true)}
+                                        className="py-2 px-3 transition-all duration-300 ease-in-out hover:bg-amber-300 rounded"
+                                        title="Customize Theme"
+                                    >
+                                        🎨
+                                    </button>
+                                </div>
+
                                 <div className="relative text-center">
                                     <button
                                         type="button"
@@ -61,24 +132,20 @@ const Header = () => {
                             </div>
                         </div>
 
-                        {/* Logo Link */}
                         <Link to="/" className="py-5 px-2 text-white text-2xl font-bold">Guessnica</Link>
 
                     </div>
                 </div>
             </nav>
 
-            {/* Mobile Menu Dropdown */}
             <div
                 id="mobile-menu-dropdown"
                 className={`${mobileMenuHeightClass} overflow-hidden transition-all duration-500 ease-in-out flex-col items-center justify-center bg-sky-800 to-blue-600 navigation-menu md:hidden`}
             >
-                {/* 💡 Converted mobile anchor tags to Link components */}
                 <Link to="/" className="py-2 px-3 transition-all duration-300 ease-in-out hover:bg-amber-300 block rounded text-center">Home (Content)</Link>
                 <Link to="/guess" className="py-2 px-3 transition-all duration-300 ease-in-out hover:bg-amber-300 block rounded text-center">Guess</Link>
                 <Link to="/profile" className="py-2 px-3 transition-all duration-300 ease-in-out hover:bg-amber-300 block rounded text-center">Profile (New Page)</Link>
 
-                {/* Mobile Dropdown */}
                 <div className="relative text-center w-full">
                     <button
                         type="button"
@@ -94,6 +161,11 @@ const Header = () => {
 
                 <Link to="/" className="py-2 px-3 block text-center rounded transition-all duration-300 ease-in-out hover:bg-amber-300">PUSTE</Link>
             </div>
+            
+            <ThemeCustomizer 
+                isOpen={showThemeCustomizer} 
+                onClose={() => setShowThemeCustomizer(false)} 
+            />
         </header>
     );
 };
