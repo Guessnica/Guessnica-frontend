@@ -1,6 +1,13 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 import AdminHeader from '../components/admin/AdminHeader';
+import AdminDashboard from '../pages/admin/AdminDashboard';
+import AdminRiddles from '../pages/admin/AdminRiddles';
+import AdminLocations from '../pages/admin/AdminLocations';
+import AdminUsers from '../pages/admin/AdminUsers';
+import AdminStats from '../pages/admin/AdminStats';
+import AdminSettings from '../pages/admin/AdminSettings';
+import UserDashboard from '../UserDashboard';
 
 export default function AdminLayout() {
     return (

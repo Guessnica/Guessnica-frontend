@@ -52,6 +52,14 @@ export default function AdminHeader() {
                         Stats
                     </NavLink>
                     <NavLink 
+                        to="/admin/user-dashboard" 
+                        className={({ isActive }) =>
+                            isActive ? 'underline font-semibold' : 'hover:underline opacity-90'
+                        }
+                    >
+                        User Dashboard
+                    </NavLink>
+                    <NavLink 
                         to="/admin/settings" 
                         className={({ isActive }) =>
                             isActive ? 'underline font-semibold' : 'hover:underline opacity-90'

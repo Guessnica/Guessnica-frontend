@@ -66,7 +66,11 @@ const Header = () => {
                             <div className="hidden flex-row items-center justify-start navigation-menu-bar md:flex">
                                 <Link to="/" className="py-2 px-3 block rounded transition-all duration-300 ease-in-out hover:bg-amber-300">Home (Content)</Link>
                                 <Link to="/guess" className="py-2 px-3 block rounded transition-all duration-300 ease-in-out hover:bg-amber-300">Guess</Link>
-                                <Link to="/profile" className="py-2 px-3 block rounded transition-all duration-300 ease-in-out hover:bg-amber-300">Profile (New Page)</Link>
+                                <Link to="/profile" className="py-2 px-3 block rounded transition-all duration-300 ease-in-out hover:bg-amber-300">Profile</Link>
+                                <Link to="/user-panel" className="py-2 px-3 block rounded transition-all duration-300 ease-in-out hover:bg-amber-300">User Panel</Link>
+                                <Link to="/leaderboard" className="py-2 px-3 block rounded transition-all duration-300 ease-in-out hover:bg-amber-300">Leaderboard</Link>
+                                <Link to="/create-user" className="py-2 px-3 block rounded transition-all duration-300 ease-in-out hover:bg-amber-300">Create User</Link>
+                                <Link to="/create-admin" className="py-2 px-3 block rounded transition-all duration-300 ease-in-out hover:bg-amber-300">Create Admin</Link>
 
                                 <div className="relative text-center">
                                     <button
@@ -132,7 +136,13 @@ const Header = () => {
                             </div>
                         </div>
 
-                        <Link to="/" className="py-5 px-2 text-white text-2xl font-bold">Guessnica</Link>
+                        <Link to="/" className="py-5 px-2 flex items-center">
+                            <img 
+                                src="/src/assets/logo_2.png" 
+                                alt="Guessnica" 
+                                className="h-8 w-auto"
+                            />
+                        </Link>
 
                     </div>
                 </div>
@@ -142,9 +152,20 @@ const Header = () => {
                 id="mobile-menu-dropdown"
                 className={`${mobileMenuHeightClass} overflow-hidden transition-all duration-500 ease-in-out flex-col items-center justify-center bg-sky-800 to-blue-600 navigation-menu md:hidden`}
             >
+                <Link to="/" className="py-3 px-2 flex items-center justify-center">
+                    <img 
+                        src="/src/assets/logo_2.png" 
+                        alt="Guessnica" 
+                        className="h-8 w-auto"
+                    />
+                </Link>
                 <Link to="/" className="py-2 px-3 transition-all duration-300 ease-in-out hover:bg-amber-300 block rounded text-center">Home (Content)</Link>
                 <Link to="/guess" className="py-2 px-3 transition-all duration-300 ease-in-out hover:bg-amber-300 block rounded text-center">Guess</Link>
-                <Link to="/profile" className="py-2 px-3 transition-all duration-300 ease-in-out hover:bg-amber-300 block rounded text-center">Profile (New Page)</Link>
+                <Link to="/profile" className="py-2 px-3 transition-all duration-300 ease-in-out hover:bg-amber-300 block rounded text-center">Profile</Link>
+                <Link to="/user-panel" className="py-2 px-3 transition-all duration-300 ease-in-out hover:bg-amber-300 block rounded text-center">User Panel</Link>
+                <Link to="/leaderboard" className="py-2 px-3 transition-all duration-300 ease-in-out hover:bg-amber-300 block rounded text-center">Leaderboard</Link>
+                <Link to="/create-user" className="py-2 px-3 transition-all duration-300 ease-in-out hover:bg-amber-300 block rounded text-center">Create User</Link>
+                <Link to="/create-admin" className="py-2 px-3 transition-all duration-300 ease-in-out hover:bg-amber-300 block rounded text-center">Create Admin</Link>
 
                 <div className="relative text-center w-full">
                     <button

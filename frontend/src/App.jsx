@@ -1,22 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import Header from './Header'; 
-import LoginPage from './LoginPage';
-import Guess from "./Guess";
-import Content from './Content';
-import Profile from "./Profile";
-import ThemeCustomizer from "./components/ThemeCustomizer";
-import ResponsiveWrapper from "./components/ResponsiveWrapper";
+import Header from './components/common/Header'; 
+import LoginPage from './components/auth/LoginPage';
+import RegisterPage from './components/auth/RegisterPage';
+import AdminUserCreator from './components/auth/AdminUserCreator';
+import NormalUserCreator from './components/auth/NormalUserCreator';
+import Guess from "./components/game/Guess";
+import Content from './pages/Content';
+import Profile from "./pages/Profile";
+import UserPanel from './user/UserPanel';
+import UserSettings from './user/UserSettings';
+import UserLeaderboard from './user/UserLeaderboard';
+import ThemeCustomizer from "./components/common/ThemeCustomizer";
+import ResponsiveWrapper from "./components/common/ResponsiveWrapper";
 import { Routes, Route } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 import i18n from "./i18n";
 
-import AdminLayout from './layouts/AdminLayout';
-import AdminDashboard from './pages/admin/AdminDashboard';
-import AdminRiddles from './pages/admin/AdminRiddles';
-import AdminLocations from './pages/admin/AdminLocations';
-import AdminUsers from './pages/admin/AdminUsers';
-import AdminStats from './pages/admin/AdminStats';
-import AdminSettings from './pages/admin/AdminSettings';
+import AdminLayout from './admin/layouts/AdminLayout';
+import AdminDashboard from './admin/pages/AdminDashboard';
+import AdminRiddles from './admin/pages/AdminRiddles';
+import AdminLocations from './admin/pages/AdminLocations';
+import AdminUsers from './admin/pages/AdminUsers';
+import AdminStats from './admin/pages/AdminStats';
+import AdminSettings from './admin/pages/AdminSettings';
+import UserDashboard from './UserDashboard';
 
 const App = () => {
     const [darkMode, setDarkMode] = useState(
@@ -90,10 +97,16 @@ const App = () => {
 
                     <Routes>
                         <Route path="/login" element={<LoginPage />} />
+                        <Route path="/register" element={<RegisterPage />} />
+                        <Route path="/create-admin" element={<AdminUserCreator />} />
+                        <Route path="/create-user" element={<NormalUserCreator />} />
                         
                         <Route path="/" element={<Content />} />
                         <Route path="/guess" element={<Guess />} />
                         <Route path="/profile" element={<Profile />} />
+                        <Route path="/user-panel" element={<UserPanel />} />
+                        <Route path="/user-settings" element={<UserSettings />} />
+                        <Route path="/leaderboard" element={<UserLeaderboard />} />
 
                         <Route path="/admin" element={<AdminLayout />}>
                             <Route index element={<AdminDashboard />} />
