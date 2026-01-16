@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/common/Header'; 
 import LoginPage from './components/auth/LoginPage';
 import RegisterPage from './components/auth/RegisterPage';
+import EmailConfirmationPage from './components/auth/EmailConfirmationPage';
 import AdminUserCreator from './components/auth/AdminUserCreator';
 import NormalUserCreator from './components/auth/NormalUserCreator';
 import Guess from "./components/game/Guess";
 import Content from './pages/Content';
 import Profile from "./pages/Profile";
-import UserPanel from './user/UserPanel';
-import UserSettings from './user/UserSettings';
-import UserLeaderboard from './user/UserLeaderboard';
+import UserPanel from './user/pages/UserPanel';
+import UserSettings from './user/pages/UserSettings';
+import UserLeaderboard from './user/pages/UserLeaderboard';
 import ThemeCustomizer from "./components/common/ThemeCustomizer";
 import ResponsiveWrapper from "./components/common/ResponsiveWrapper";
 import { Routes, Route } from 'react-router-dom';
@@ -98,6 +99,7 @@ const App = () => {
                     <Routes>
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="/register" element={<RegisterPage />} />
+                        <Route path="/confirm-email" element={<EmailConfirmationPage />} />
                         <Route path="/create-admin" element={<AdminUserCreator />} />
                         <Route path="/create-user" element={<NormalUserCreator />} />
                         

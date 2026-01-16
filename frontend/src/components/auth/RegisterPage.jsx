@@ -52,8 +52,11 @@ export default function RegisterPage() {
             const data = await response.json();
 
             if (response.ok) {
-                localStorage.setItem('jwt', data.token);
-                navigate('/');
+                // Registration successful - email confirmation required
+                setError('Registration successful! Please check your email to confirm your account.');
+                setTimeout(() => {
+                    navigate('/login');
+                }, 3000);
             } else {
                 setError(data.message || 'Registration failed');
             }
@@ -62,6 +65,10 @@ export default function RegisterPage() {
         } finally {
             setLoading(false);
         }
+    };
+
+    const handleFacebookLogin = () => {
+        window.location.href = '/auth/facebook';
     };
 
     return (
